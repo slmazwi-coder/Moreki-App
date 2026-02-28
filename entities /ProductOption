@@ -1,0 +1,64 @@
+{
+  "name": "ProductOption",
+  "type": "object",
+  "properties": {
+    "shopping_item_id": {
+      "type": "string",
+      "description": "Reference to the shopping item"
+    },
+    "store": {
+      "type": "string",
+      "description": "Store name"
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Actual product name at store"
+    },
+    "brand": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number",
+      "description": "Current price in ZAR"
+    },
+    "original_price": {
+      "type": "number",
+      "description": "Original price if on sale"
+    },
+    "is_on_sale": {
+      "type": "boolean",
+      "default": false
+    },
+    "discount_percentage": {
+      "type": "number"
+    },
+    "size": {
+      "type": "string"
+    },
+    "in_stock": {
+      "type": "boolean",
+      "default": true
+    },
+    "is_selected": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_recommended": {
+      "type": "boolean",
+      "default": false
+    },
+    "recommendation_reason": {
+      "type": "string",
+      "description": "Why this option is recommended"
+    },
+    "image_url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "shopping_item_id",
+    "store",
+    "product_name",
+    "price"
+  ]
+}
