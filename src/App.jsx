@@ -1,4 +1,4 @@
-import { Toaster } from "@/components/ui/Toaster"
+
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { pagesConfig } from './pages.config'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -48,7 +48,6 @@ function App() {
       <Router>
         <AuthenticatedApp />
       </Router>
-      <Toaster />
     </QueryClientProvider>
   )
 }
