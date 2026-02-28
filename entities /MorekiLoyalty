@@ -1,0 +1,70 @@
+{
+  "name": "MorekiLoyalty",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Reference to user"
+    },
+    "points": {
+      "type": "number",
+      "default": 0,
+      "description": "Total Moreki loyalty points"
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "Bronze",
+        "Silver",
+        "Gold",
+        "Platinum"
+      ],
+      "default": "Bronze",
+      "description": "Current loyalty tier"
+    },
+    "service_fee_percentage": {
+      "type": "number",
+      "default": 5.0,
+      "description": "Current service fee (5% down to 3.5%)"
+    },
+    "total_orders": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of orders placed"
+    },
+    "total_spent": {
+      "type": "number",
+      "default": 0,
+      "description": "Total amount spent in ZAR"
+    },
+    "points_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "points": {
+            "type": "number"
+          },
+          "action": {
+            "type": "string"
+          },
+          "order_id": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "History of points earned/redeemed"
+    },
+    "last_order_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "user_id"
+  ]
+}
