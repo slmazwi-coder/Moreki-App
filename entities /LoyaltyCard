@@ -1,0 +1,58 @@
+{
+  "name": "LoyaltyCard",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Reference to user"
+    },
+    "store_name": {
+      "type": "string",
+      "enum": [
+        "Woolworths",
+        "Pick n Pay",
+        "Spar",
+        "Checkers",
+        "Clicks",
+        "Dis-Chem",
+        "Game",
+        "Makro",
+        "Nando's",
+        "KFC",
+        "McDonald's",
+        "Steers",
+        "Other"
+      ],
+      "description": "Store/restaurant name"
+    },
+    "card_number": {
+      "type": "string",
+      "description": "Loyalty card number"
+    },
+    "card_holder_name": {
+      "type": "string",
+      "description": "Name on the card"
+    },
+    "program_name": {
+      "type": "string",
+      "description": "e.g., WRewards, Smart Shopper, Spar Rewards"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "default": "active"
+    },
+    "barcode_image_url": {
+      "type": "string",
+      "description": "Optional barcode/QR code image"
+    }
+  },
+  "required": [
+    "user_id",
+    "store_name",
+    "card_number"
+  ]
+}
