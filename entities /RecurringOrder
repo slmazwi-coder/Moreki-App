@@ -1,0 +1,143 @@
+{
+  "name": "RecurringOrder",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Custom name like 'Mom's Monthly Groceries'"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description"
+    },
+    "schedule_day": {
+      "type": "number",
+      "description": "Day of month (1-28) to trigger order",
+      "minimum": 1,
+      "maximum": 28
+    },
+    "next_run_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Next scheduled order date"
+    },
+    "delivery_address": {
+      "type": "string"
+    },
+    "delivery_method": {
+      "type": "string",
+      "enum": [
+        "pickup",
+        "delivery"
+      ],
+      "default": "delivery"
+    },
+    "preferred_mall": {
+      "type": "string"
+    },
+    "notification_preference": {
+      "type": "string",
+      "enum": [
+        "review_before_order",
+        "auto_approve_notify_after"
+      ],
+      "default": "review_before_order",
+      "description": "How user wants to be notified"
+    },
+    "notification_days_before": {
+      "type": "number",
+      "default": 3,
+      "description": "Days before schedule_day to send notification"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "cancelled"
+      ],
+      "default": "active"
+    },
+    "items_template": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "preferred_brand": {
+            "type": "string"
+          },
+          "preferred_store": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "last_price": {
+            "type": "number"
+          },
+          "product_options": {
+            "type": "array",
+            "description": "Real-time product options with pricing from stores",
+            "items": {
+              "type": "object",
+              "properties": {
+                "store": {
+                  "type": "string"
+                },
+                "product_name": {
+                  "type": "string"
+                },
+                "brand": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "original_price": {
+                  "type": "number"
+                },
+                "is_on_sale": {
+                  "type": "boolean"
+                },
+                "size": {
+                  "type": "string"
+                },
+                "in_stock": {
+                  "type": "boolean"
+                },
+                "has_loyalty_discount": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Template of items for this recurring order with product options"
+    },
+    "last_triggered_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "total_orders_created": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "name",
+    "schedule_day",
+    "delivery_address",
+    "preferred_mall",
+    "items_template"
+  ]
+}
