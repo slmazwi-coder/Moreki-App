@@ -1,0 +1,109 @@
+{
+  "name": "Order",
+  "type": "object",
+  "properties": {
+    "shopping_list_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_payment",
+        "paid",
+        "processing",
+        "ready_for_pickup",
+        "out_for_delivery",
+        "delivered",
+        "completed",
+        "cancelled"
+      ],
+      "default": "pending_payment"
+    },
+    "subtotal": {
+      "type": "number"
+    },
+    "delivery_fee": {
+      "type": "number",
+      "default": 0
+    },
+    "delivery_distance_km": {
+      "type": "number",
+      "description": "Distance from mall to delivery address in km"
+    },
+    "service_fee": {
+      "type": "number"
+    },
+    "total": {
+      "type": "number"
+    },
+    "delivery_method": {
+      "type": "string",
+      "enum": [
+        "pickup",
+        "delivery"
+      ],
+      "default": "pickup"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "card_online",
+        "cash_on_delivery",
+        "card_on_delivery"
+      ],
+      "default": "card_online"
+    },
+    "pickup_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "delivery_address": {
+      "type": "string"
+    },
+    "delivery_latitude": {
+      "type": "number"
+    },
+    "delivery_longitude": {
+      "type": "number"
+    },
+    "mall_name": {
+      "type": "string"
+    },
+    "mall_latitude": {
+      "type": "number"
+    },
+    "mall_longitude": {
+      "type": "number"
+    },
+    "hub_location": {
+      "type": "string"
+    },
+    "tracking_id": {
+      "type": "string"
+    },
+    "payment_reference": {
+      "type": "string"
+    },
+    "stores_breakdown": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "store": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "items_count": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "shopping_list_id",
+    "total"
+  ]
+}
