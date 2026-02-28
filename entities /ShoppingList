@@ -1,0 +1,36 @@
+{
+  "name": "ShoppingList",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the shopping list"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "searching",
+        "ready_to_order",
+        "ordered",
+        "completed"
+      ],
+      "default": "draft"
+    },
+    "preferred_mall": {
+      "type": "string",
+      "description": "Selected mall for pickup/shopping"
+    },
+    "estimated_total": {
+      "type": "number",
+      "description": "Estimated total cost"
+    },
+    "items_count": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
