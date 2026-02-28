@@ -1,0 +1,94 @@
+{
+  "name": "ShoppingItem",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the product needed"
+    },
+    "preferred_brand": {
+      "type": "string",
+      "description": "Preferred brand if any"
+    },
+    "preferred_store": {
+      "type": "string",
+      "description": "Preferred store or restaurant"
+    },
+    "size": {
+      "type": "string",
+      "description": "Size specification (e.g., 1L, 500g, Large, Medium)"
+    },
+    "quantity": {
+      "type": "number",
+      "default": 1,
+      "description": "Number of units needed"
+    },
+    "flavor_or_color": {
+      "type": "string",
+      "description": "Flavor, color or variant if applicable"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Groceries",
+        "Fresh Produce",
+        "Meat & Seafood",
+        "Bakery",
+        "Dairy & Eggs",
+        "Beverages",
+        "Alcohol & Liquor",
+        "Snacks & Confectionery",
+        "Fast Food & Restaurants",
+        "Clothing & Fashion",
+        "Electronics",
+        "Home & Furniture",
+        "Beauty & Personal Care",
+        "Health & Pharmacy",
+        "Sports & Outdoor",
+        "Toys & Games",
+        "Books & Stationery",
+        "Tobacco & Vapes",
+        "Pet Supplies",
+        "Other"
+      ],
+      "default": "Other"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes or preferences"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "searching",
+        "options_found",
+        "selected",
+        "purchased"
+      ],
+      "default": "pending"
+    },
+    "shopping_list_id": {
+      "type": "string",
+      "description": "Reference to parent shopping list"
+    }
+  },
+  "required": [
+    "name",
+    "quantity"
+  ],
+  "rls": {
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    },
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}
