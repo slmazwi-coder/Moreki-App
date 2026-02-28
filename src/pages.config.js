@@ -1,9 +1,4 @@
-/**
- * pages.config.js - Page routing configuration
- * Updated to use Aliases (@/) to bypass relative path resolution issues.
- */
-
-import Checkout from '@/pages/Checkout.jsx';
+import Checkout from '@/pages/Cart.jsx'; // Pointing to the brand new file
 import Home from '@/pages/Home.jsx';
 import HowItWorks from '@/pages/HowItWorks.jsx';
 import Loyalty from '@/pages/Loyalty.jsx';
