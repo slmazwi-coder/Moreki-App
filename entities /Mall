@@ -1,0 +1,67 @@
+{
+  "name": "Mall",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Official mall name"
+    },
+    "city": {
+      "type": "string"
+    },
+    "province": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "number"
+    },
+    "longitude": {
+      "type": "number"
+    },
+    "stores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Groceries",
+              "Pharmacy",
+              "Restaurants",
+              "Fashion",
+              "Electronics",
+              "Other"
+            ]
+          },
+          "floor": {
+            "type": "string"
+          },
+          "has_loyalty_program": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "description": "Actual stores in this mall"
+    },
+    "operating_hours": {
+      "type": "string"
+    },
+    "parking_available": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "name",
+    "city",
+    "stores"
+  ]
+}
