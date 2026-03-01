@@ -19,7 +19,7 @@ import {
   AlertCircle
 } from "lucide-react";
 import { toast } from "sonner";
-import OnboardingWelcome from '../components/profile/OnboardingWelcome';
+import OnboardingWelcome from '../components/profile/OnboardingWelcome.jsx';
 
 const PROVINCES = [
   "Gauteng", 
