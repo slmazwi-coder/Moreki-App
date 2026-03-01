@@ -6,7 +6,7 @@ import Home from './pages/Home.jsx';
 import HowItWorks from './pages/HowItWorks.jsx';
 import InitializeMall from './pages/InitializeMall.jsx';
 import Loyalty from './pages/Loyalty.jsx';
-import LoyaltyCard from './pages/LoyaltyCards.jsx';
+import LoyaltyCard from './pages/./LoyaltyCards.jsx';
 import Orders from './pages/Orders.jsx';
 import Profile from './pages/Profile.jsx';
 import RecurringOrders from './pages/RecurringOrders.jsx';
