@@ -1,126 +1,81 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { CheckCircle2, X, Store, Plus, Minus, Edit2 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from 'react';
+import { 
+  CheckCircle2, 
+  Store, 
+  Minus, 
+  Plus, 
+  X, 
+  ShoppingCart,
+  Trash2 
+} from 'lucide-react';
+import { Button } from '../ui/button.jsx';
+import { Card } from '../ui/card.jsx';
 
-export default function SelectedItemsReview({ items, selectedOptions, onRemoveItem, onUpdateQuantity }) {
-  const selectedItems = items.filter(item => selectedOptions[item.id]);
-  const [editingQty, setEditingQty] = useState({});
-
-  if (selectedItems.length === 0) return null;
-
-  const handleQuantityChange = (itemId, newQty) => {
-    const qty = Math.max(1, parseInt(newQty) || 1);
-    onUpdateQuantity(itemId, qty);
-  };
+const SelectedItemsReview = ({ items = [], onUpdateQuantity, onRemoveItem }) => {
+  if (items.length === 0) {
+    return (
+      <div className="text-center py-8 text-stone-500">
+        <ShoppingCart className="w-12 h-12 mx-auto mb-3 opacity-20" />
+        <p>Your list is empty</p>
+      </div>
+    );
+  }
 
   return (
-    <Card className="border-green-200 bg-green-50/30">
-      <CardHeader className="pb-3">
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <CheckCircle2 className="w-5 h-5 text-green-600" />
-          Your Selected Items ({selectedItems.length})
-        </CardTitle>
-        <p className="text-sm text-stone-600 mt-1">
-          Review your selections before proceeding to checkout
-        </p>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-3">
-          <AnimatePresence>
-            {selectedItems.map((item) => {
-              const selection = selectedOptions[item.id];
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  className="bg-white rounded-xl p-4 border border-stone-200"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <h4 className="font-semibold text-stone-800">{item.name}</h4>
-                        <Badge className="bg-green-100 text-green-700 text-xs">
-                          ✓ Selected
-                        </Badge>
-                      </div>
-                      
-                      <div className="space-y-2 text-sm">
-                        <div className="flex items-center gap-2 text-stone-600">
-                          <Store className="w-4 h-4" />
-                          <span className="font-medium">{selection.store}</span>
-                          <span className="text-stone-400">•</span>
-                          <span>{selection.product_name}</span>
-                        </div>
-                        
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center gap-2 bg-stone-100 rounded-lg px-2 py-1">
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              onClick={() => handleQuantityChange(item.id, selection.quantity - 1)}
-                              className="h-6 w-6 hover:bg-stone-200"
-                            >
-                              <Minus className="w-3 h-3" />
-                            </Button>
-                            <Input
-                              type="number"
-                              value={selection.quantity}
-                              onChange={(e) => handleQuantityChange(item.id, e.target.value)}
-                              className="w-16 h-7 text-center border-0 bg-transparent"
-                              min="1"
-                            />
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              onClick={() => handleQuantityChange(item.id, selection.quantity + 1)}
-                              className="h-6 w-6 hover:bg-stone-200"
-                            >
-                              <Plus className="w-3 h-3" />
-                            </Button>
-                          </div>
-                          <span className="text-stone-400">×</span>
-                          <span className="text-stone-600">R{selection.price.toFixed(2)} each</span>
-                        </div>
-                        
-                        {selection.size && (
-                          <p className="text-stone-400 text-xs">Size: {selection.size}</p>
-                        )}
-                      </div>
-                    </div>
+    <div className="space-y-4">
+      <div className="flex items-center gap-2 mb-4">
+        <CheckCircle2 className="w-5 h-5 text-green-600" />
+        <h2 className="font-semibold text-lg">Review Selected Items</h2>
+      </div>
 
-                    <div className="text-right flex flex-col items-end gap-2">
-                      <div>
-                        <p className="text-2xl font-bold text-green-600">
-                          R{selection.totalPrice.toFixed(2)}
-                        </p>
-                        {selection.quantity > 1 && (
-                          <p className="text-xs text-stone-500">
-                            {selection.quantity} × R{selection.price.toFixed(2)}
-                          </p>
-                        )}
-                      </div>
-                      
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => onRemoveItem(item.id)}
-                        className="text-red-500 hover:text-red-700 hover:bg-red-50 h-8 w-8"
-                      >
-                        <X className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
-      </CardContent>
-    </Card>
- 
+      {items.map((item, index) => (
+        <Card key={item.id || index} className="p-4">
+          <div className="flex justify-between items-start">
+            <div className="flex-1">
+              <h3 className="font-medium text-stone-800">{item.name}</h3>
+              <div className="flex items-center gap-2 mt-1 text-sm text-stone-500">
+                <Store className="w-4 h-4" />
+                <span>{item.store || 'Any Store'}</span>
+              </div>
+            </div>
+            
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => onRemoveItem(item.id)}
+              className="text-stone-400 hover:text-red-500"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+
+          <div className="flex justify-between items-center mt-4">
+            <span className="text-amber-600 font-bold">
+              R {(item.price || 0).toFixed(2)}
+            </span>
+            
+            <div className="flex items-center border rounded-lg overflow-hidden">
+              <button 
+                onClick={() => onUpdateQuantity(item.id, Math.max(1, (item.quantity || 1) - 1))}
+                className="p-2 hover:bg-stone-100 transition-colors"
+              >
+                <Minus className="w-3 h-3" />
+              </button>
+              <span className="px-4 py-1 bg-stone-50 font-medium border-x">
+                {item.quantity || 1}
+              </span>
+              <button 
+                onClick={() => onUpdateQuantity(item.id, (item.quantity || 1) + 1)}
+                className="p-2 hover:bg-stone-100 transition-colors"
+              >
+                <Plus className="w-3 h-3" />
+              </button>
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+  );
+};
+
+export default SelectedItemsReview;
